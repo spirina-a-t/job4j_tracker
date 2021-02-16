@@ -18,10 +18,20 @@ public class TriangleTest {
     }
 
     @Test
-    public void nonExist() {
+    public void sideIsZero() {
         Point a = new Point(8, 5);
         Point b = new Point(3, 0);
         Point c = new Point(3, 0);
+        Triangle triangle = new Triangle(a, b, c);
+        double rsl = triangle.area();
+        assertThat(rsl, closeTo(-1, 0.001));
+    }
+
+    @Test
+    public void whenSideLessThenSumTwoSides() {
+        Point a = new Point(5, 1);
+        Point b = new Point(3, 3);
+        Point c = new Point(1, 5);
         Triangle triangle = new Triangle(a, b, c);
         double rsl = triangle.area();
         assertThat(rsl, closeTo(-1, 0.001));
