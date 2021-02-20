@@ -21,7 +21,7 @@ public class Library {
         }
         System.out.println("Only books with a title \"Clean Code\":");
         for (Book temp : book) {
-            if (temp.equals(book[3])) {
+            if ("Clean Code".equals(temp.getTitle())) {
                 System.out.println(temp.getTitle() + " - " + temp.getPages());
             }
         }
