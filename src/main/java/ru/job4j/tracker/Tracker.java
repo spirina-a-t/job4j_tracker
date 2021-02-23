@@ -56,4 +56,13 @@ public class Tracker {
         items[index].setName(item.getName());
         return findById(index) != null;
     }
+
+    public boolean delete(int id) {
+        int start = indexOf(id);
+        items[start] = null;
+        System.arraycopy(items, start + 1, items, start, size - start);
+        items[size - 1] = null;
+        size--;
+        return findById(start) != null;
+    }
 }
