@@ -9,5 +9,11 @@ public class StartUI {
         String itemFormat = item.getCreated().format(formatter);
         System.out.println("Текущие дата и время: " + itemFormat);
 
+        Tracker tracker = new Tracker();
+        Item itemOne = new Item();
+        itemOne.setName("Test item");
+        tracker.add(itemOne);
+        Item result = tracker.findById(1);
+        System.out.println(result);
     }
 }
