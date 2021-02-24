@@ -14,22 +14,17 @@ public class Tracker {
     }
 
     public Item[] findAll() {
-        Item[] itemWithoutNull = new Item[items.length];
-        for (Item item : items) {
-            if (item != null) {
-                itemWithoutNull[size] = item;
-                size++;
-            }
-        }
-        return Arrays.copyOf(itemWithoutNull, size);
+        return Arrays.copyOf(items, size);
     }
 
     public Item[] findByName(String key) {
         Item[] names = new Item[items.length];
-        for (Item item : items) {
+        int count = 0;
+        for (int i = 0; i < size; i++) {
+            Item item = items[i];
             if (item.getName().equals(key)) {
-                names[size] = item;
-                size++;
+                names[count] = item;
+                count++;
             }
         }
         return Arrays.copyOf(names, size);
@@ -52,17 +47,26 @@ public class Tracker {
     }
 
     public boolean replace(int id, Item item) {
+        boolean rsl = false;
         int index = indexOf(id);
-        items[index].setName(item.getName());
-        return findById(index) != null;
+        if (index != -1) {
+            items[index].setId(id);
+            items[index].setName(item.getName());
+            rsl = true;
+        }
+        return rsl;
     }
 
     public boolean delete(int id) {
+        boolean rsl = false;
         int start = indexOf(id);
-        items[start] = null;
-        System.arraycopy(items, start + 1, items, start, size - start);
-        items[size - 1] = null;
-        size--;
-        return findById(start) != null;
+        if (start != -1) {
+            items[start] = null;
+            System.arraycopy(items, start + 1, items, start, size - start - 1);
+            items[size - 1] = null;
+            size--;
+            rsl = true;
+        }
+        return rsl;
     }
 }
