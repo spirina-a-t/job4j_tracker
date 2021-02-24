@@ -15,5 +15,11 @@ public class StartUI {
         tracker.add(itemOne);
         Item result = tracker.findById(1);
         System.out.println(result);
+
+        Item itemTwo = new Item();
+        itemTwo.setId(2);
+        itemTwo.setName("Alonso");
+        System.out.println(itemTwo);
+
     }
 }
