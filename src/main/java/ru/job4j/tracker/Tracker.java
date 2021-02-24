@@ -27,7 +27,7 @@ public class Tracker {
                 count++;
             }
         }
-        return Arrays.copyOf(names, size);
+        return Arrays.copyOf(names, count);
     }
 
     public Item findById(int id) {
@@ -50,8 +50,8 @@ public class Tracker {
         boolean rsl = false;
         int index = indexOf(id);
         if (index != -1) {
-            items[index].setId(id);
-            items[index].setName(item.getName());
+            item.setId(id);
+            items[index] = item;
             rsl = true;
         }
         return rsl;
