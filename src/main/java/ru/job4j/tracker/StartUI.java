@@ -21,25 +21,24 @@ public class StartUI {
             } else if (select == 1) {
                 System.out.println("=== Show all items ===");
                 Item[] all = tracker.findAll();
-                for (Item temp : all) {
-                    System.out.println(temp);
-                }
                 if (all.length == 0) {
                     System.out.println("Заявок не обнаружено");
+                } else {
+                    for (Item temp : all) {
+                        System.out.println(temp);
+                    }
                 }
             } else if (select == 2) {
                 System.out.println("=== Edit item ===");
                 System.out.println("Enter id Item: ");
                 int id = Integer.valueOf(scanner.nextLine());
-                if (tracker.findById(id) != null) {
-                    System.out.println("Enter new name: ");
-                    String name = scanner.nextLine();
-                    Item newItem = new Item();
-                    newItem.setName(name);
-                    boolean rsl = tracker.replace(id, newItem);
-                    if (rsl) {
-                        System.out.println("Имя заявки успешно изменено: " + newItem);
-                    }
+                System.out.println("Enter new name: ");
+                String name = scanner.nextLine();
+                Item newItem = new Item();
+                newItem.setName(name);
+                boolean rsl = tracker.replace(id, newItem);
+                if (rsl) {
+                    System.out.println("Имя заявки успешно изменено: " + newItem);
                 } else {
                     System.out.println("Заявка с id " + id + " не найдена");
                 }
@@ -69,7 +68,7 @@ public class StartUI {
                 System.out.println("Enter name Item: ");
                 String name = scanner.nextLine();
                 Item[] item = tracker.findByName(name);
-                boolean res = item != null;
+                boolean res = item.length > 0;
                 if (res) {
                     for (Item temp : item) {
                         System.out.println("Найдена заявка " + temp);
